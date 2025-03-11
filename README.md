@@ -1,3 +1,4 @@
+```plantuml
 @startuml
 
 class Usuario {
@@ -28,24 +29,24 @@ class Status {
 
 class OrdemDeCompra {
     Long id
-    Fornecedor fornecedor
-    Produto produto
     int quantidade
-    Status status
     LocalDate dataCriacao
 }
 
 class RecebimentoDePedido {
     Long id
-    OrdemDeCompra ordemCompra
     int quantidadeRecebida
     LocalDate dataRecebimento
 }
 
 Usuario "1" -- "*" OrdemDeCompra : cria
 Fornecedor "1" -- "*" OrdemDeCompra : fornece
-Produto "1" -- "*" OrdemDeCompra : incluído
+Produto "1" -- "*" OrdemDeCompra : inclui
 OrdemDeCompra "1" -- "*" RecebimentoDePedido : relacionado
 Status "1" -- "*" OrdemDeCompra : possui
+
+OrdemDeCompra "*" -- "1" Produto
+OrdemDeCompra "*" -- "1" Fornecedor
+RecebimentoDePedido "*" -- "1" OrdemDeCompra
 
 @enduml
